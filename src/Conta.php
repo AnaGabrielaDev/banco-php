@@ -5,6 +5,7 @@ class Conta
     private string $Titular;
     private float $saldo = 0;
 
+<<<<<<< HEAD
     private static $quantidadeContas = 0;
 
     public function __construct(Titular $titular)
@@ -18,6 +19,8 @@ class Conta
         self :: $quantidadeContas--;
     }
 
+=======
+>>>>>>> parent of 3ff625c (🔨 Refactor)
     public function sacar(float $valorASacar): void
     {
         if ($valorASacar > $this->saldo) {
@@ -54,16 +57,34 @@ class Conta
         return $this -> saldo;
     }
 
+<<<<<<< HEAD
     public function recuperarNomeTitular () : string 
+=======
+    public function definirCpfTitular (string $cpf) : void
+    {
+        $this -> cpfTitular = $cpf;
+    }
+
+    public function recuperarCpfTitular (): string 
+>>>>>>> parent of 3ff625c (🔨 Refactor)
     {
         return $this -> titular -> getNome();
     }
 
+<<<<<<< HEAD
     public function recuperarCpfTitular () : string 
     {
         return $this -> titular -> getCpf();
     }
     public static function recuperaQuantidadeConta () : int
+=======
+    public function definirNomeTitular (string $nome) : void
+    {
+        $this -> nomeTitular = $nome;
+    }
+
+    public function recuperarNomeTitular (): string 
+>>>>>>> parent of 3ff625c (🔨 Refactor)
     {
         return self :: $quantidadeContas;
     }
