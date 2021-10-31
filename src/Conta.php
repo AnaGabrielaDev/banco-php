@@ -2,26 +2,24 @@
 
 class Conta
 {
-    private string $Titular;
-    private float $saldo = 0;
-
-<<<<<<< HEAD
-    private static $quantidadeContas = 0;
+    private $titular;
+    private $saldo;
+    private static $numeroDeContas = 0;
 
     public function __construct(Titular $titular)
     {
-        $this -> titular = $titular;
-        
-        self :: $quantidadeContas++;
+        $this->titular = $titular;
+        $this->saldo = 0;
+
+        self::$numeroDeContas++;
     }
 
-    public function __destruct(){
-        self :: $quantidadeContas--;
+    public function __destruct()
+    {
+        self::$numeroDeContas--;
     }
 
-=======
->>>>>>> parent of 3ff625c (🔨 Refactor)
-    public function sacar(float $valorASacar): void
+    public function saca(float $valorASacar): void
     {
         if ($valorASacar > $this->saldo) {
             echo "Saldo indisponível";
@@ -31,7 +29,7 @@ class Conta
         $this->saldo -= $valorASacar;
     }
 
-    public function depositar(float $valorADepositar): void
+    public function deposita(float $valorADepositar): void
     {
         if ($valorADepositar < 0) {
             echo "Valor precisa ser positivo";
@@ -41,52 +39,34 @@ class Conta
         $this->saldo += $valorADepositar;
     }
 
-    public function transferir(float $valorATransferir, Conta $contaDestino): void
+    public function transfere(float $valorATransferir, Conta $contaDestino): void
     {
         if ($valorATransferir > $this->saldo) {
             echo "Saldo indisponível";
             return;
         }
 
-        $this->sacar($valorATransferir);
-        $contaDestino->depositar($valorATransferir);
+        $this->saca ($valorATransferir);
+        $contaDestino->deposita ($valorATransferir);
     }
 
-    public function recuperarSaldo () : float 
+    public function recuperaSaldo(): float
     {
-        return $this -> saldo;
+        return $this->saldo;
     }
 
-<<<<<<< HEAD
-    public function recuperarNomeTitular () : string 
-=======
-    public function definirCpfTitular (string $cpf) : void
+    public function recuperaNomeTitular(): string
     {
-        $this -> cpfTitular = $cpf;
+        return $this->titular->recuperaNome();
     }
 
-    public function recuperarCpfTitular (): string 
->>>>>>> parent of 3ff625c (🔨 Refactor)
+    public function recuperaCpfTitular(): string
     {
-        return $this -> titular -> getNome();
+        return $this->titular->recuperaCpf();
     }
 
-<<<<<<< HEAD
-    public function recuperarCpfTitular () : string 
+    public static function recuperaNumeroDeContas(): int
     {
-        return $this -> titular -> getCpf();
-    }
-    public static function recuperaQuantidadeConta () : int
-=======
-    public function definirNomeTitular (string $nome) : void
-    {
-        $this -> nomeTitular = $nome;
-    }
-
-    public function recuperarNomeTitular (): string 
->>>>>>> parent of 3ff625c (🔨 Refactor)
-    {
-        return self :: $quantidadeContas;
+        return self::$numeroDeContas;
     }
 }
- 
