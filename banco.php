@@ -2,14 +2,23 @@
 
 require_once 'src/Conta.php';
 require_once 'src/Titular.php';
+require_once 'src/CPF.php';
 
-$ana = new Conta(new Titular(cpf: '123.345.643-87', nome: 'ana gaby'));
-var_dump($ana);
-$ana -> depositar(valorADepositar: 500);
-$ana -> sacar(valorASacar: 400);
+$ana = new Titular(new CPF('123.456.709-10'), 'Ana Gabriela');
+$primeiraConta = new Conta($ana);
+$primeiraConta->deposita(500);
+$primeiraConta->saca(300); 
 
-echo "Conta da " . $ana -> recuperarNomeTitular() . " cujo CPF: " .$ana -> recuperarCpfTitular() . " \nPossui um saldo de: R$"  . $ana -> recuperarSaldo();
+echo "Titular: ". $primeiraConta->recuperaNomeTitular() . " cujo cpf: ". $primeiraConta->recuperaCpfTitular() . PHP_EOL;
+echo "saldo: ". $primeiraConta->recuperaSaldo(). " R$". PHP_EOL;
 
-$xuxuzinha = new Conta(new Titular(cpf: '123.456.765-98', nome: 'Xuxuzinha da silva'));
-unset($xuxuzinha);
-echo "\nQtd Contas Criadas: " . Conta :: recuperaQuantidadeConta();
+$xuxuzinha = new Titular(new CPF('698.549.548-14'), 'xuxuzinha de mel');
+$segundaConta = new Conta($xuxuzinha);
+
+$rosalinda = new Titular(new CPF('234.456.765-80'), 'rosalinda bezerra');
+$terceiraConta = new Conta($rosalinda);
+
+$outra = new Conta(new Titular(new CPF('123.654.789-01'), 'Abcdefg'));
+
+unset($segundaConta);
+echo "o banco possui atualmente ". Conta::recuperaNumeroDeContas(). " contas.";
